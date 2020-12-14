@@ -112,52 +112,78 @@ function fromJSON(proto, json) {
  *  For more examples see unit tests.
  */
 
-class cssSelectorBuilder {
-  constructor() {
-    this.selector = [];
-  }
+// const cssSelectorBuilder = {
+//   selector: [],
+//   element(value) {
+//     this.selector += value;
+//     return this;
+//   },
 
-  element(value) {
-    this.selector += value;
-    return this;
-  }
+//   id(value) {
+//     this.selector += `#${value}`;
+//     return this;
+//   },
 
-  id(value) {
-    this.selector += `#${value}`;
-    return this;
-  }
+//   class(value) {
+//     this.selector += `.${value}`;
+//     return this;
+//   },
 
-  class(value) {
-    this.selector += `.${value}`;
-    return this;
-  }
+//   attr(value) {
+//     this.selector += `[${value}]`;
+//     return this;
+//   },
 
-  attr(value) {
-    this.selector += `[${value}]`;
-    return this;
-  }
+//   pseudoClass(value) {
+//     this.selector += `:${value}`;
+//     return this;
+//   },
 
-  pseudoClass(value) {
-    this.selector += `:${value}`;
-    return this;
-  }
+//   pseudoElement(value) {
+//     this.selector += `::${value}`;
+//     return this;
+//   },
 
-  pseudoElement(value) {
-    this.selector += `::${value}`;
-    return this;
-  }
+//   combine(selector1, combinator, selector2) {
+//     this.selector = `${selector1} ${combinator} ${selector2}`;
+//     return this;
+//   },
 
-  combine(selector1, combinator, selector2) {
-    this.selector = `${selector1} ${combinator} ${selector2}`;
-    return this;
-  }
+//   stringify() {
+//     const result = this.selector;
+//     this.selector = [];
+//     return result;
+//   },
+// };
+const cssSelectorBuilder = {
+  element(/* value */) {
+    throw new Error('Not implemented');
+  },
 
-  stringify() {
-    const result = this.selector;
-    this.selector = [];
-    return result;
-  }
-}
+  id(/* value */) {
+    throw new Error('Not implemented');
+  },
+
+  class(/* value */) {
+    throw new Error('Not implemented');
+  },
+
+  attr(/* value */) {
+    throw new Error('Not implemented');
+  },
+
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
+  },
+
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
+  },
+
+  combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
+  },
+};
 
 
 module.exports = {

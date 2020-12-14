@@ -273,10 +273,10 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  return arr.map((el, ind) => {
-    const [...test] = Array(ind + 1).fill(el);
-    return test;
-  }).join().split(',');
+  return arr
+    .map((el, ind) => Array(ind + 1)
+      .fill(el))
+    .flat();
 }
 
 
@@ -311,8 +311,9 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(arr) {
-  return arr.filter((num) => num > 0).length;
+function getPositivesCount(/* arr */) {
+  // return arr.filter((num) => num > 0).length;
+  throw new Error('Not implemented');
 }
 
 /**
@@ -329,7 +330,19 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  return arr.sort();
+  const obj = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+  return arr.sort((a, b) => obj[a] - obj[b]);
 }
 
 /**
@@ -361,7 +374,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  return arr.filter((el) => el && 0).length;
+  return arr.filter((el) => !el).length;
 }
 
 /**
@@ -480,7 +493,10 @@ function getIntervalArray(start, end) {
  */
 function distinct(arr) {
   const res = {};
-  arr.forEach((el) => { res[el] = el; });
+  arr.map((el) => {
+    res[el] = el;
+    return res[el];
+  });
   return Object.keys(res);
 }
 
@@ -533,7 +549,7 @@ function group(/* array, keySelector, valueSelector */) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return childrenSelector(arr);
+  return arr.map((el) => childrenSelector(el)).flat();
 }
 
 
